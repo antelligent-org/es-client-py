@@ -1,0 +1,6 @@
+
+.subckt filter 1 2 3
+L1 1 2 159.15u
+C1 2 3 159.15p
+R1 3 1 50
+.ends filter

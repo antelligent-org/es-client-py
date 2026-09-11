@@ -1,35 +1,41 @@
-from es_client import CodeFastClient
-# from PIL import Image
-# import io
+# pip install PIL
+# pip install git+https://github.com/Kroy665/es-client.git
 
-client = CodeFastClient(email="kroy963@gmail.com", team_slug="demo", api_key="es-815cdI5FrGmnNinLqKRHEVA7t5M8")
+
+import os
+
+from es_client import CodeFastClient
+from PIL import Image
+import io
+
+client = CodeFastClient(email="kroy665@gmail.com", team_slug="demo", api_key=os.environ["ES_API_KEY"])
 
 # Get token 
 client._get_token()
 
 # Upload file
-print(client.upload_file(file_path="test.txt", file_name="test.txt"))
+# print(client.upload_file(file_path="test.txt", file_name="test.txt"))
 
 # --- Example Usage ---
 
-# if __name__ == '__main__':
-#     # Create a simple red image in memory
-#     img = Image.new('RGB', (60, 30), color = 'red')
-#     # Save the image to an in-memory bytes buffer
-#     img_byte_arr = io.BytesIO()
-#     img.save(img_byte_arr, format='PNG')
-#     img_bytes = img_byte_arr.getvalue() # Get the raw bytes
+if __name__ == '__main__':
+    # Create a simple red image in memory
+    img = Image.new('RGB', (60, 30), color = 'red')
+    # Save the image to an in-memory bytes buffer
+    img_byte_arr = io.BytesIO()
+    img.save(img_byte_arr, format='PNG')
+    img_bytes = img_byte_arr.getvalue() # Get the raw bytes
 
-#     # Upload the image
-#     try:
-#         response = client.upload_file(
-#             file_content=img_bytes,
-#             file_name="red_image.png"
-#         )
-#         print("Image uploaded successfully:")
-#         print(response)
-#     except Exception as e:
-#         print(f"Failed to upload image: {e}")
+    # Upload the image
+    try:
+        response = client.upload_file(
+            file_content=img_bytes,
+            file_name="red_image.png"
+        )
+        print("Image uploaded successfully:")
+        print(response)
+    except Exception as e:
+        print(f"Failed to upload image: {e}")
 
 # --- Test ---
 # create a csv FILE and upload it
